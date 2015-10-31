@@ -24,15 +24,15 @@ public class NumberTextField extends TextField
     }
     
     public Integer getValue() {
-    	try {
-    		return Integer.parseInt(getText());
-    	} catch (NumberFormatException ex) {
-    		return null;
-    	}
+        try {
+            return Integer.parseInt(getText());
+        } catch (NumberFormatException ex) {
+            return null;
+        }
     }
     
     public void setValue(int val) {
-    	this.setText(Integer.toString(val));
+        this.setText(Integer.toString(val));
     }
 
     private boolean validate(String text)

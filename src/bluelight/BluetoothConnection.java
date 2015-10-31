@@ -69,7 +69,7 @@ public class BluetoothConnection {
     }
     
     private int parity(int val) {
-    	return (val & 0x0F) ^ ((val & 0xF0) >> 4);
+        return (val & 0x0F) ^ ((val & 0xF0) >> 4);
     }
     
     public void setLights(int red, int green, int blue) throws IOException {
@@ -81,9 +81,9 @@ public class BluetoothConnection {
         bytes[4] = (byte) (0x50 | parity(blue));
         bytes[5] = (byte) blue;
         try {
-        	stream.write(bytes);
+            stream.write(bytes);
         } catch (Exception ex) {
-        	ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
@@ -100,9 +100,9 @@ public class BluetoothConnection {
         bytes[8] = (byte) (0x60 | parity(pos));
         bytes[9] = (byte) pos;
         try {
-        	stream.write(bytes);
+            stream.write(bytes);
         } catch (Exception ex) {
-        	ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 }

@@ -54,7 +54,7 @@ public class Bluelight extends Application {
         final Bluelight bluelight = this;
         
         randomizeButton.setOnAction(e -> {
-        	controller.randomize(useStrobe.isSelected());
+            controller.randomize(useStrobe.isSelected());
         });
         randomizeButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         randomizeButton.setPrefHeight(1000);
@@ -85,7 +85,7 @@ public class Bluelight extends Application {
             int b = getValAndLimitToBounds(blue);
             int p = getValAndLimitToBounds(position);
             int s = getValAndLimitToBounds(strobe);
-        	controller.setLights(r, g, b, p, s);
+            controller.setLights(r, g, b, p, s);
         });
         //setRgbps.setDisable(true);
         bluetoothButtons.add(setRgbps);
@@ -94,38 +94,38 @@ public class Bluelight extends Application {
         
         Button thingButton = new Button("Screen");
         thingButton.setOnAction(e -> {
-	        JFrame frame = new JFrame();
-	        JPanel panel = new JPanel();
-	        frame.setContentPane(panel);
-	        frame.setUndecorated(true);
-	        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	        
-	        frame.setVisible(true);
+            JFrame frame = new JFrame();
+            JPanel panel = new JPanel();
+            frame.setContentPane(panel);
+            frame.setUndecorated(true);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            
+            frame.setVisible(true);
         });
         
         Button rainbowButton = new Button("Rainbow");
         rainbowButton.setOnAction(e -> {
-	        controller.rainbow();
+            controller.rainbow();
         });
         
         Button fadeButton = new Button("Fade");
         fadeButton.setOnAction(e -> {
-	        controller.fade();
+            controller.fade();
         });
         
         Button randFast = new Button("Random Fast");
         randFast.setOnAction(e -> {
-	        controller.randomizeRepeatFast();
+            controller.randomizeRepeatFast();
         });
         
         Button randSlow = new Button("Random Slow");
         randSlow.setOnAction(e -> {
-	        controller.randomizeRepeatSlow();
+            controller.randomizeRepeatSlow();
         });
         
         Button internet = new Button("Internet");
         internet.setOnAction(e -> {
-	        controller.internet();
+            controller.internet();
         });
 
         GridPane innerGrid = new GridPane();
@@ -156,7 +156,7 @@ public class Bluelight extends Application {
     
     public void enableButtons() {
         //for (Button b : bluetoothButtons) {
-        //	System.out.println("Enabling: " + b.getText());
+        //    System.out.println("Enabling: " + b.getText());
         //    b.setDisable(false);
         //}
     }

@@ -18,9 +18,9 @@ public class LightController {
     }
     
     private void run(LightLoop task) {
-    	for (Thread t : threads) {
-			System.out.println("Killing: " + t.getName());
-    	}
+        for (Thread t : threads) {
+            System.out.println("Killing: " + t.getName());
+        }
         final List<Thread> toWait = new ArrayList<>();
         Iterator<Thread> iter = threads.iterator();
         while (iter.hasNext()) {
@@ -38,7 +38,7 @@ public class LightController {
                     task.loop();
                     Thread.sleep(10);
                 } catch (InterruptedException ex) {
-                	System.out.println("Stopping Interrupted");
+                    System.out.println("Stopping Interrupted");
                     Thread.currentThread().interrupt();
                 } catch (Exception ex) {
                     System.out.println("Task threw exception: " + ex.getMessage());
@@ -66,7 +66,7 @@ public class LightController {
     private int position;
     public void fade() {
         run(() -> {
-        	position++;
+            position++;
             position %= 1535;
             if (position < 512) {
                 connection.setLights(convertRange(position), 0, 0);
@@ -109,54 +109,54 @@ public class LightController {
     }
     
     public void setLights(int r, int g, int b) {
-    	run(() -> {
-    		connection.setLights(r, g, b);
-    		Thread.currentThread().interrupt();
-    	});
+        run(() -> {
+            connection.setLights(r, g, b);
+            Thread.currentThread().interrupt();
+        });
     }
     
     public void setLights(int r, int g, int b, int p, int s) {
-    	run(() -> {
-    		connection.setLights(r, g, b, p, s);
-    		Thread.currentThread().interrupt();
-    	});
+        run(() -> {
+            connection.setLights(r, g, b, p, s);
+            Thread.currentThread().interrupt();
+        });
     }
     
     private int randomByte() {
-		return (int) (Math.random() * 255);
+        return (int) (Math.random() * 255);
     }
 
-	public void randomize(boolean strobe) {
-		run(() -> {
-    		connection.setLights(randomByte(), randomByte(), randomByte(), randomByte() | 0x80, strobe ? randomByte() : 0);;
-    		Thread.currentThread().interrupt();
-    	});
-	}
-	
-	public void randomizeRepeatFast() {
-		run(() -> {
-    		connection.setLights(randomByte(), randomByte(), randomByte(), 255, 0);
-    	});
-	}
-	
-	public void randomizeRepeatSlow() {
-		run(() -> {
-    		connection.setLights(randomByte(), randomByte(), randomByte(), randomByte() | 0x80, 0);
-    		Thread.sleep(500);
-		});
-	}
-	
-	boolean toggle;
-	public void internet() {
-		run(() -> {
-			if (toggle) {
-				connection.setLights(255, 0, 0, 0, 0);
-				Thread.sleep(200);
-			} else {
-				connection.setLights(0, 0, 0, 0, 0);
-				Thread.sleep(1200);
-			}
-			toggle = !toggle;
-		});
-	}
+    public void randomize(boolean strobe) {
+        run(() -> {
+            connection.setLights(randomByte(), randomByte(), randomByte(), randomByte() | 0x80, strobe ? randomByte() : 0);;
+            Thread.currentThread().interrupt();
+        });
+    }
+    
+    public void randomizeRepeatFast() {
+        run(() -> {
+            connection.setLights(randomByte(), randomByte(), randomByte(), 255, 0);
+        });
+    }
+    
+    public void randomizeRepeatSlow() {
+        run(() -> {
+            connection.setLights(randomByte(), randomByte(), randomByte(), randomByte() | 0x80, 0);
+            Thread.sleep(500);
+        });
+    }
+    
+    boolean toggle;
+    public void internet() {
+        run(() -> {
+            if (toggle) {
+                connection.setLights(255, 0, 0, 0, 0);
+                Thread.sleep(200);
+            } else {
+                connection.setLights(0, 0, 0, 0, 0);
+                Thread.sleep(1200);
+            }
+            toggle = !toggle;
+        });
+    }
 }
