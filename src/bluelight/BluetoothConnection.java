@@ -41,7 +41,8 @@ public class BluetoothConnection {
                     System.out.println("Service discovered");
                     try {
                         stream = Connector.openOutputStream(srs[0].getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false));
-                        bluelight.enableButtons();
+                        if (bluelight != null)
+                           bluelight.enableButtons();
                         stream.write(0x00);
                         state = 2;
                     } catch (Exception ex) {
